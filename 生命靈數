@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>解境｜生命靈數</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #15110c, #0c0906);
+    font-family: "Noto Serif TC", serif;
+    color: #f3e8cd;
+  }
+
+  .card {
+    width: 360px;
+    padding: 40px 30px;
+    text-align: center;
+    background: rgba(20,16,12,0.9);
+    border: 1px solid rgba(214,184,111,0.3);
+  }
+
+  .title {
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: #b9964f;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #1a1510;
+    border: 1px solid #8f7440;
+    color: #f3e8cd;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0.2em;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background: rgba(214,184,111,0.15);
+    border: 1px solid rgba(214,184,111,0.4);
+    color: #f3e8cd;
+    cursor: pointer;
+  }
+
+  .number {
+    font-size: 56px;
+    color: #d6b86f;
+    margin-top: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="title">NUMEROLOGY</div>
+  <h1>生命靈數</h1>
+
+  <!-- 改這裡 -->
+  <input type="text" id="birthday" placeholder="輸入生日 例如：20030716">
+
+  <button onclick="calculate()">開始解讀</button>
+
+  <div class="number" id="number">—</div>
+</div>
+
+<script>
+function calculate() {
+  let input = document.getElementById("birthday").value;
+
+  // 檢查是否為8位數字
+  if (!/^\d{8}$/.test(input)) {
+    alert("請輸入正確格式，例如：20030716");
+    return;
+  }
+
+  let digits = input.split("").map(Number);
+  let sum = digits.reduce((a,b)=>a+b,0);
+
+  const master = [11,22,33];
+
+  while (sum > 9 && !master.includes(sum)) {
+    sum = sum.toString().split("").reduce((a,b)=>a+Number(b),0);
+  }
+
+  document.getElementById("number").innerText = sum;
+}
+</script>
+
+</body>
+</html>
